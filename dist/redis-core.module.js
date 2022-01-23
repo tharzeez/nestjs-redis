@@ -34,6 +34,8 @@ let RedisCoreModule = RedisCoreModule_1 = class RedisCoreModule {
         };
     }
     static forRootAsync(options) {
+        console.log('here forRootAsync')
+
         return {
             module: RedisCoreModule_1,
             imports: options.imports,
@@ -45,7 +47,9 @@ let RedisCoreModule = RedisCoreModule_1 = class RedisCoreModule {
         const closeConnection = ({ clients, defaultKey }) => (options) => {
             const name = options.name || defaultKey;
             const client = clients.get(name);
+            console.log('here outer disconnect')
             if (client && !options.keepAlive) {
+                console.log('here disconnect')
                 client.disconnect();
             }
         };
