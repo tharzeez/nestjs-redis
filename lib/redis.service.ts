@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { REDIS_CLIENT } from './redis.constants';
 import { Redis } from 'ioredis';
+import { Graph } from 'redisgraph.js';
 import { RedisClient, RedisClientError } from './redis-client.provider';
 
 @Injectable()
@@ -9,7 +10,7 @@ export class RedisService {
     @Inject(REDIS_CLIENT) private readonly redisClient: RedisClient,
   ) {}
 
-  getClient(name?: string): Redis {
+  getClient(name?: string): Graph {
     if (!name) {
       name = this.redisClient.defaultKey;
     }
@@ -19,7 +20,7 @@ export class RedisService {
     return this.redisClient.clients.get(name);
   }
 
-  getClients(): Map<string, Redis> {
+  getClients(): Map<string, Graph> {
     return this.redisClient.clients;
   }
 }

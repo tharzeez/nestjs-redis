@@ -1,15 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createAsyncClientOptions = exports.createClient = exports.RedisClientError = void 0;
-const Redis = require("ioredis");
+const redisgraph_js_1 = require("redisgraph.js");
 const uuid_1 = require("uuid");
 const redis_constants_1 = require("./redis.constants");
 class RedisClientError extends Error {
 }
 exports.RedisClientError = RedisClientError;
 async function getClient(options) {
-    const { onClientReady, url, ...opt } = options;
-    const client = url ? new Redis(url) : new Redis(opt);
+    const { onClientReady, url, host, graphId, port, ...opt } = options;
+    const client = new redisgraph_js_1.Graph(graphId, host, port, opt);
     if (onClientReady) {
         onClientReady(client);
     }

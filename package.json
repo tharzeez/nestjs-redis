@@ -25,6 +25,7 @@
     "@types/ioredis": "*",
     "@types/uuid": "*",
     "ioredis": "^4",
+    "redisgraph.js": "^2.3.0",
     "reflect-metadata": "*",
     "rxjs": "^6",
     "uuid": "^8"
